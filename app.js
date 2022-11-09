@@ -16,3 +16,16 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
+
+
+app.get('/', (req, res) => {
+    req.session.user = {
+        username: 'alex',
+        role: 'admin'
+    }
+    res.send({message: 'ok'})
+})
+
+app.get('/currentSession', (req, res) => {
+    res.send(req.session.user)
+})
